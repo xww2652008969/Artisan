@@ -89,7 +89,7 @@ namespace Artisan.UI
         {
             if (DalamudInfo.IsOnStaging())
             {
-                ImGui.Text($"Artisan is not designed to work on non-release versions of Dalamud. Please type /xlbranch, click 'release' and then 'Pick & Restart'.");
+                ImGui.Text($"Artisan 设计上不支持非正式版本的 Dalamud。请键入 /xlbranch，点击 ‘release’，然后点击 ‘Pick & Restart.");
                 return;
             }
 
@@ -121,13 +121,13 @@ namespace Artisan.UI
 
                         if (ThreadLoadImageHandler.TryGetTextureWrap(imagePath, out var logo))
                         {
-                            ImGuiEx.LineCentered("###ArtisanLogo", () =>
+                            ImGuiEx.LineCentered("###A rtisanLogo", () =>
                             {
                                 ImGui.Image(logo.ImGuiHandle, new(125f.Scale(), 125f.Scale()));
                                 if (ImGui.IsItemHovered())
                                 {
                                     ImGui.BeginTooltip();
-                                    ImGui.Text($"You are the 69th person to find this secret. Nice!");
+                                    ImGui.Text($"您是第 69 位发现这个秘密的人。太棒了！");
                                     ImGui.EndTooltip();
                                 }
                             });
@@ -271,14 +271,12 @@ namespace Artisan.UI
                 ImGuiEx.TextUnderlined("Crafting Modes");
             });
             ImGui.Spacing();
-
-            ImGuiEx.TextWrapped($"Artisan features an \"Automatic Action Execution Mode\" which merely takes the suggestions provided to it and performs the action on your behalf." +
-                                " By default, this will fire as fast as the game allows, which is faster than normal macros." +
-                                " You are not bypassing any sort of game restrictions doing this, however you can set a delay should you choose to." +
-                                " Enabling this has nothing to do with the suggestion making process Artisan uses by default.");
+            ImGuiEx.TextWrapped($"Artisan 具有 \"自动操作执行模式\"，它只是执行提供给它的建议并代表你执行操作。" +
+                " 默认情况下，这将以游戏允许的最快速度触发，比普通宏更快。" +
+                " 你并没有绕过任何游戏限制，不过你可以选择设置延迟。" +
+                " 启用此功能与 Artisan 默认使用的建议制作过程无关。");
 
             var automode = Path.Combine(Svc.PluginInterface.AssemblyLocation.DirectoryName!, "Images/AutoMode.png");
-
             if (ThreadLoadImageHandler.TryGetTextureWrap(automode, out var example))
             {
                 ImGuiEx.LineCentered("###AutoModeExample", () =>
@@ -300,11 +298,10 @@ namespace Artisan.UI
                 });
             }
 
-            ImGuiEx.TextWrapped($"By clicking the \"Execute recommended action\" button, you are instructing the plugin to perform the suggestion it has recommended." +
-                $" This considered semi-manual as you still have to click each action, but you don't have to worry about finding them on your hotbars." +
-                $" \"Full-Manual\" mode is performed by pressing the buttons on your hotbar as normal." +
-                $" You are provided with an aid by default as Artisan will highlight the action on your hotbar if it is slotted. (This can be disabled in the settings)");
-
+            ImGuiEx.TextWrapped($"点击 \"执行推荐操作\" 按钮，即指示插件执行其推荐的建议。" +
+                $" 这被认为是半手动的，因为你仍然需要点击每个操作，但不必担心在快捷栏中找到它们。" +
+                $" \"全手动\" 模式是通过正常按下快捷栏上的按钮来执行的。" +
+                $" 默认情况下，Artisan 会在你的快捷栏中突出显示已插槽的操作，以提供帮助。（这可以在设置中禁用）");
             var outlineExample = Path.Combine(Svc.PluginInterface.AssemblyLocation.DirectoryName!, "Images/OutlineExample.png");
 
             if (ThreadLoadImageHandler.TryGetTextureWrap(outlineExample, out example))
@@ -322,14 +319,13 @@ namespace Artisan.UI
             });
             ImGui.Spacing();
 
-            ImGuiEx.TextWrapped($"Artisan by default will provide you with suggestions on what your next crafting step should be. This solver is not perfect however and it is definitely not a substitute for having appropriate gear. " +
-                $"You do not need to do anything to enable this behaviour other than have Artisan enabled. " +
+            ImGuiEx.TextWrapped($"Artisan 默认会为你提供下一步制作步骤的建议。尽管如此，这个求解器并不完美，绝对不能替代合适的装备。" +
+                $" 你不需要做任何事情来启用此行为，只需启用 Artisan 即可。" +
                 $"\r\n\r\n" +
-                $"If you are trying to tackle a craft that the default solver cannot craft, Artisan allows you to build macros which can be used as the suggestions instead of the default solver. " +
-                $"Artisan macros have the benefit of not being restricted in length, can fire off as fast as the game allows and also allows some additional options to tweak on the fly.");
-
+                $"如果你尝试进行默认求解器无法完成的制作，Artisan 允许你构建宏，这些宏可以用作建议，替代默认求解器。" +
+                $" Artisan 宏的优点是不受长度限制，可以以游戏允许的最快速度触发，并且还允许一些额外的选项进行即时调整。");
             ImGui.Spacing();
-            ImGuiEx.TextUnderlined($"Click here to be taken to the Macro menu.");
+            ImGuiEx.TextUnderlined($"点击这里进入宏菜单");
             if (ImGui.IsItemHovered())
             {
                 ImGui.SetMouseCursor(ImGuiMouseCursor.Hand);
@@ -339,7 +335,7 @@ namespace Artisan.UI
                 OpenWindow = OpenWindow.Macro;
             }
             ImGui.Spacing();
-            ImGuiEx.TextWrapped($"Once you have created a macro, you will have to assign it to a recipe. This is easily accomplished by using the Recipe Window dropdown. By default, this is attached to the top right of the in-game crafting log window but can be unattached in the settings.");
+            ImGuiEx.TextWrapped($"创建宏后，你需要将其分配给一个配方。这可以通过使用配方窗口的下拉菜单轻松完成。默认情况下，它附加在游戏内制作日志窗口的右上角，但可以在设置中解除附加");
 
 
             var recipeWindowExample = Path.Combine(Svc.PluginInterface.AssemblyLocation.DirectoryName!, "Images/RecipeWindowExample.png");
@@ -353,8 +349,7 @@ namespace Artisan.UI
             }
 
 
-            ImGuiEx.TextWrapped($"Select a macro you have created from the dropdown box. " +
-                $"When you go to craft this item, the suggestions will be replaced by the contents of your macro.");
+            ImGuiEx.TextWrapped($"从下拉框中选择你创建的宏。当你制作这个物品时，建议将被你的宏内容替代。");
 
 
             ImGui.Spacing();
@@ -364,15 +359,15 @@ namespace Artisan.UI
             });
             ImGui.Spacing();
 
-            ImGuiEx.TextWrapped($"Artisan has a mode titled \"Endurance Mode\" which is basically a fancier way of saying \"Auto-repeat mode\" which will continually try to craft the same item for you. " +
-                $"Endurance Mode works by selecting a recipe from the in-game crafting log and enabling the feature. " +
-                $"Your character will then attempt to keep crafting that item as many times as you have materials for it. " +
+            ImGuiEx.TextWrapped($"Artisan 有一个名为 \"耐力模式\" 的功能，基本上就是 \"自动重复模式\" 的高级说法，它会不断尝试为你制作相同的物品。" +
+                $" 耐力模式通过从游戏内的制作日志中选择一个配方并启用该功能来工作。" +
+                $" 然后，你的角色将尝试根据你拥有的材料数量不断制作该物品。" +
                 $"\r\n\r\n" +
-                $"The other features should hopefully be self-explanatory as Endurance Mode can also manage the usage of your food, potions, manuals, repairs and materia extraction between crafts. " +
-                $"The repair feature only supports repairing with dark matter and does not support repair NPCs.");
+                $"其他功能应该是显而易见的，因为耐力模式还可以管理你在制作之间使用的食物、药水、手册、修理和魔晶石提取。" +
+                $"修理功能仅支持使用暗物质修理，不支持修理 NPC。");
 
             ImGui.Spacing();
-            ImGuiEx.TextUnderlined($"Click here to be taken to the Endurance menu.");
+            ImGuiEx.TextUnderlined($"点击这里进入耐力模式菜单");
             if (ImGui.IsItemHovered())
             {
                 ImGui.SetMouseCursor(ImGuiMouseCursor.Hand);
@@ -440,8 +435,8 @@ namespace Artisan.UI
 
         public static void DrawMainWindow()
         {
-            ImGui.TextWrapped($"Here you can change some settings Artisan will use. Some of these can also be toggled during a craft.");
-            ImGui.TextWrapped($"In order to use Artisan's manual highlight, please slot every crafting action you have unlocked to a visible hotbar.");
+            ImGui.TextWrapped($"您可以在此处更改 Artisan 将使用的某些设置。其中一些设置也可以在制作过程中切换。");
+            ImGui.TextWrapped($"为了使用 Artisan 的手动突出显示，请将您已解锁的每个制作操作插入可见的热键栏中。");
             bool autoEnabled = P.Config.AutoMode;
             bool delayRec = P.Config.DelayRecommendation;
             bool failureCheck = P.Config.DisableFailurePrediction;
@@ -612,7 +607,7 @@ namespace Artisan.UI
                     P.Config.Save();
                 }
 
-                ImGui.Text($"Collectible Threshold Breakpoint");
+                ImGui.Text($"可收集阈值断点");
                 ImGuiComponents.HelpMarker("The solver will stop going for quality once a collectible has hit a certain breakpoint.");
 
                 if (ImGui.RadioButton($"Minimum", P.Config.SolverCollectibleMode == 1))
@@ -828,55 +823,56 @@ namespace Artisan.UI
                 }
 
                 ImGui.Indent();
-                if (ImGui.CollapsingHeader("Ingredient Table Settings"))
+                ImGui.Indent();
+                if (ImGui.CollapsingHeader("材料表设置"))
                 {
-                    ImGuiEx.TextWrapped(ImGuiColors.DalamudYellow, $"All Column Settings do not have an effect if you have already viewed the ingredients table for a list.");
+                    ImGuiEx.TextWrapped(ImGuiColors.DalamudYellow, $"如果你已经查看了某个列表的材料表，则所有列设置都不会生效。");
 
-                    if (ImGui.Checkbox($@"Default Hide ""Inventory"" Column", ref P.Config.DefaultHideInventoryColumn))
+                    if (ImGui.Checkbox($@"默认隐藏 ""库存"" 列", ref P.Config.DefaultHideInventoryColumn))
                         P.Config.Save();
 
-                    if (ImGui.Checkbox($"Default Hide \"Retainers\" Column", ref P.Config.DefaultHideRetainerColumn))
+                    if (ImGui.Checkbox($"默认隐藏 \"雇员\" 列", ref P.Config.DefaultHideRetainerColumn))
                         P.Config.Save();
 
-                    if (ImGui.Checkbox($"Default Hide \"Remaining Needed\" Column", ref P.Config.DefaultHideRemainingColumn))
+                    if (ImGui.Checkbox($"默认隐藏 \"剩余需求\" 列", ref P.Config.DefaultHideRemainingColumn))
                         P.Config.Save();
 
-                    if (ImGui.Checkbox($"Default Hide \"Sources\" Column", ref P.Config.DefaultHideCraftableColumn))
+                    if (ImGui.Checkbox($"默认隐藏 \"来源\" 列", ref P.Config.DefaultHideCraftableColumn))
                         P.Config.Save();
 
-                    if (ImGui.Checkbox($"Default Hide \"Number Craftable\" Column", ref P.Config.DefaultHideCraftableCountColumn))
+                    if (ImGui.Checkbox($"默认隐藏 \"可制作数量\" 列", ref P.Config.DefaultHideCraftableCountColumn))
                         P.Config.Save();
 
-                    if (ImGui.Checkbox($"Default Hide \"Used to Craft\" Column", ref P.Config.DefaultHideCraftItemsColumn))
+                    if (ImGui.Checkbox($"默认隐藏 \"用于制作\" 列", ref P.Config.DefaultHideCraftItemsColumn))
                         P.Config.Save();
 
-                    if (ImGui.Checkbox($"Default Hide \"Category\" Column", ref P.Config.DefaultHideCategoryColumn))
+                    if (ImGui.Checkbox($"默认隐藏 \"类别\" 列", ref P.Config.DefaultHideCategoryColumn))
                         P.Config.Save();
 
-                    if (ImGui.Checkbox($"Default Hide \"Gathered Zone\" Column", ref P.Config.DefaultHideGatherLocationColumn))
+                    if (ImGui.Checkbox($"默认隐藏 \"采集区域\" 列", ref P.Config.DefaultHideGatherLocationColumn))
                         P.Config.Save();
 
-                    if (ImGui.Checkbox($"Default Hide \"ID\" Column", ref P.Config.DefaultHideIdColumn))
+                    if (ImGui.Checkbox($"默认隐藏 \"ID\" 列", ref P.Config.DefaultHideIdColumn))
                         P.Config.Save();
 
-                    if (ImGui.Checkbox($"Default \"Only show HQ Crafts\" Enabled", ref P.Config.DefaultHQCrafts))
+                    if (ImGui.Checkbox($"默认 \"仅显示 HQ 制作\" 启用", ref P.Config.DefaultHQCrafts))
                         P.Config.Save();
 
-                    if (ImGui.Checkbox($"Default \"Colour Validation\" Enabled", ref P.Config.DefaultColourValidation))
+                    if (ImGui.Checkbox($"默认 \"颜色验证\" 启用", ref P.Config.DefaultColourValidation))
                         P.Config.Save();
 
-                    if (ImGui.Checkbox($"Fetch Prices from Universalis", ref P.Config.UseUniversalis))
+                    if (ImGui.Checkbox($"从 Universalis 获取价格", ref P.Config.UseUniversalis))
                         P.Config.Save();
 
                     if (P.Config.UseUniversalis)
                     {
-                        if (ImGui.Checkbox($"Limit Universalis to current DC", ref P.Config.LimitUnversalisToDC))
+                        if (ImGui.Checkbox($"限制 Universalis 到当前数据中心", ref P.Config.LimitUnversalisToDC))
                             P.Config.Save();
 
-                        if (ImGui.Checkbox($"Only Fetch Prices on Demand", ref P.Config.UniversalisOnDemand))
+                        if (ImGui.Checkbox($"仅按需获取价格", ref P.Config.UniversalisOnDemand))
                             P.Config.Save();
 
-                        ImGuiComponents.HelpMarker("You will have to click a button to fetch the price per item.");
+                        ImGuiComponents.HelpMarker("你需要点击一个按钮来获取每个物品的价格。");
                     }
                 }
 
@@ -918,7 +914,7 @@ namespace Artisan.UI
 
                 ImGui.Spacing();
 
-                ImGui.TextWrapped($"This change was made to bring back the very original behaviour of Endurance mode. If you do not care about your ingredient ratio, please make sure to enable Max Quantity Mode.");
+                ImGui.TextWrapped($"此更改是为了恢复耐力模式的最初行为。如果你不关心你的材料比例，请确保启用最大数量模式");
 
                 ImGui.SetCursorPosY(windowSize.Y - ImGui.GetFrameHeight() - ImGui.GetStyle().WindowPadding.Y);
                 if (ImGui.Button("Close", -Vector2.UnitX))

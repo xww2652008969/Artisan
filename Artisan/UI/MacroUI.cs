@@ -44,19 +44,19 @@ namespace Artisan.UI
 
         internal static void Draw()
         {
-            ImGui.TextWrapped("This tab will allow you to add macros that Artisan can use instead of its own decisions. Once you create a new macro, click on it from the list below to open up the macro editor window for your macro.");
+            ImGui.TextWrapped("此选项卡允许你添加宏，Artisan 可以使用这些宏来替代其自身的决策。创建新宏后，从下面的列表中点击它以打开宏编辑器窗口.");
             ImGui.Separator();
 
             if (Svc.ClientState.IsLoggedIn && Crafting.CurState is not Crafting.State.IdleNormal and not Crafting.State.IdleBetween)
             {
-                ImGui.Text($"Crafting in progress. Macro settings will be unavailable until you stop crafting.");
+                ImGui.Text($"制作进行中。宏设置在你停止制作之前将不可用");
                 return;
             }
             ImGui.Spacing();
-            if (ImGui.Button("Import Macro From Clipboard"))
+            if (ImGui.Button("从剪贴板导入宏"))
                 OpenMacroNamePopup(MacroNameUse.FromClipboard);
 
-            if (ImGui.Button("Import Macro From Clipboard (Artisan Export)"))
+            if (ImGui.Button("从剪贴板导入宏(Artisan Export)"))
             {
                 try
                 {
@@ -70,11 +70,11 @@ namespace Artisan.UI
                 catch (Exception ex)
                 {
                     ex.Log();
-                    Notify.Error("Unable to import.");
+                    Notify.Error("无法导入。");
                 }
             }
 
-            if (ImGui.Button("New Macro"))
+            if (ImGui.Button("新建宏"))
                 OpenMacroNamePopup(MacroNameUse.NewMacro);
 
             DrawMacroNamePopup(MacroNameUse.FromClipboard);
@@ -83,14 +83,14 @@ namespace Artisan.UI
             if (P.Config.MacroSolverConfig.Macros.Count > 0)
             {
                 if (P.Config.MacroSolverConfig.Macros.Count > 1)
-                    ImGui.Checkbox("Reorder Mode (Click and Drag to Reorder)", ref reorderMode);
+                    ImGui.Checkbox("“重新排序模式（点击并拖动以重新排序）", ref reorderMode);
                 else
                     reorderMode = false;
 
                 if (reorderMode)
-                    ImGuiEx.CenterColumnText("Reorder Mode");
+                    ImGuiEx.CenterColumnText("重新排序模式");
                 else
-                    ImGuiEx.CenterColumnText("Macro Editor Select");
+                    ImGuiEx.CenterColumnText("宏编辑器选择");
 
                 if (ImGui.BeginChild("##selector", new Vector2(ImGui.GetContentRegionAvail().X, ImGui.GetContentRegionAvail().Y / 1.85f), true))
                 {
@@ -98,7 +98,7 @@ namespace Artisan.UI
                     {
                         var m = P.Config.MacroSolverConfig.Macros[i];
                         int cpCost = GetCPCost(m);
-                        var selected = ImGui.Selectable($"{m.Name} (CP Cost: {cpCost}) (ID: {m.ID})###{m.ID}");
+                        var selected = ImGui.Selectable($"{m.Name} (CP 消耗: {cpCost}) (ID: {m.ID})###{m.ID}");
 
                         if (ImGui.IsItemActive() && !ImGui.IsItemHovered() && reorderMode)
                         {
@@ -120,7 +120,7 @@ namespace Artisan.UI
 
                 }
                 ImGui.EndChild();
-                ImGuiEx.CenterColumnText("Quick Macro Assigner");
+                ImGuiEx.CenterColumnText("快速宏分配器");
                 if (ImGui.BeginChild("###Assigner", new Vector2(ImGui.GetContentRegionAvail().X, ImGui.GetContentRegionAvail().Y), true))
                 {
                     if (ImGui.BeginCombo($"{LuminaSheets.AddonSheet[405].Text.RawString.Replace("#", "").Replace("n°", "").Trim()}", selectedAssignMacro?.Name ?? ""))
@@ -276,10 +276,10 @@ namespace Artisan.UI
                     }
                     filteredRecipes = filteredRecipes.Where(x => x.CanHq != quickAssignCannotHQ);
 
-                    if (ImGui.Checkbox($"Show All Recipes Assigned To", ref P.Config.ShowMacroAssignResults))
+                    if (ImGui.Checkbox($"显示分配给的所有配方", ref P.Config.ShowMacroAssignResults))
                         P.Config.Save();
 
-                    if (ImGui.Button($"Assign Macro To Recipes", new Vector2(ImGui.GetContentRegionAvail().X / 2, 24f.Scale())))
+                    if (ImGui.Button($"将宏分配到配方", new Vector2(ImGui.GetContentRegionAvail().X / 2, 24f.Scale())))
                     {
                         int numberFound = 0;
                         foreach (var recipe in filteredRecipes)
@@ -292,7 +292,7 @@ namespace Artisan.UI
                             if (P.Config.ShowMacroAssignResults)
                             {
                                 P.TM.DelayNext(400);
-                                P.TM.Enqueue(() => Notify.Info($"Macro assigned to {recipe.ItemResult.Value.Name.RawString}."));
+                                P.TM.Enqueue(() => Notify.Info($"分配给的宏 {recipe.ItemResult.Value.Name.RawString}."));
                             }
                             numberFound++;
                         }

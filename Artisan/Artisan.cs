@@ -67,18 +67,18 @@ public unsafe class Artisan : IDalamudPlugin
 
         Svc.Commands.AddHandler(commandName, new CommandInfo(OnCommand)
         {
-            HelpMessage = "Opens the Artisan menu.\n" +
-            "/artisan lists → Open Lists.\n" +
-            "/artisan lists <ID> → Opens specific list by ID.\n" +
-            "/artisan lists <ID> start → Starts specific list by ID.\n" +
-            "/artisan macros → Open Macros.\n" +
-            "/artisan macros <ID> → Opens specific macro by ID.\n" +
-            "/artisan endurance → Open Endurance.\n" +
-            "/artisan endurance start|stop → Starts or stops endurance mode.\n" +
-            "/artisan settings → Open Settings.\n" +
-            "/artisan workshops → Open FC Workshops.\n" +
-            "/artisan builder → Open List Builder.\n" +
-            "/artisan automode → Toggles Automatic Action Execution Mode on/off.",
+            HelpMessage = "打开 Artisan\n" +
+           "/artisan lists → 打开列表.\n" +
+           "/artisan lists <ID> → 打开特定ID的列表\n" +
+           "/artisan lists <ID> start → 通过 ID 启动特定列表.\n" +
+           "/artisan macros → 打开宏.\n" +
+           "/artisan macros <ID> → 打开特定ID的宏.\n" +
+           "/artisan endurance → 打开耐力模式.\n" +
+           "/artisan endurance start|stop → 启动或停止耐力模式.\n" +
+           "/artisan settings → 打开设置.\n" +
+           "/artisan workshops → 打开 FC 工坊.\n" +
+           "/artisan builder → 打开列表构建器.\n" +
+           "/artisan automode → 切换自动操作执行模式开/关.",
             ShowInHelp = true,
         });
 
